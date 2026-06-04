@@ -1,3 +1,4 @@
+import { formatErrors } from "./formatter";
 import { EnvSchema, Options, ValidationResult, FieldError } from "./schema";
 import { runValidator } from "./validator";
 
