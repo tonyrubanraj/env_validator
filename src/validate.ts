@@ -1,8 +1,14 @@
+import { EnvSchema, Options, ValidationResult, FieldError } from "./schema";
+import { runValidator } from "./validator";
+
 const isEmpty = (val: string | undefined): boolean => {
   return val === undefined || val === "";
 };
 
-const validate = (schema: EnvSchema, options?: Options): ValidationResult => {
+export const validate = (
+  schema: EnvSchema,
+  options?: Options,
+): ValidationResult => {
   const values = options?.env ?? process.env;
   const errors: FieldError[] = [];
   const data: Record<string, unknown> = {};
@@ -38,9 +44,7 @@ const validate = (schema: EnvSchema, options?: Options): ValidationResult => {
     }
   });
   if (options?.onError !== "return" && errors.length > 0)
-    throw new Error(
-      errors.map((err) => `${err.variable}: ${err.message}`).join("\n"),
-    );
+    throw new Error(formatErrors(errors));
   return {
     success: errors.length === 0,
     data,

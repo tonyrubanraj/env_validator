@@ -1,3 +1,13 @@
+import {
+  NumberField,
+  StringField,
+  BooleanField,
+  EnumField,
+  UrlField,
+  EmailField,
+  FieldSpec,
+} from "./schema";
+
 const TRUTHY_VALUES = new Set<string>(["true", "1", "yes", "on", "enabled"]);
 const FALSY_VALUES = new Set<string>(["false", "0", "no", "off", "disabled"]);
 const EMAIL_REGEXP = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -124,7 +134,7 @@ const validateEmail = (value: string, _spec: EmailField): RuleResult => {
   };
 };
 
-const runValidator = (value: string, spec: FieldSpec): RuleResult => {
+export const runValidator = (value: string, spec: FieldSpec): RuleResult => {
   switch (spec.type) {
     case "boolean":
       return validateBoolean(value, spec);

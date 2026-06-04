@@ -1,9 +1,9 @@
-interface Field {
+export interface Field {
   required?: true;
   description?: string;
 }
 
-interface NumberField extends Field {
+export interface NumberField extends Field {
   type: "number";
   min?: number;
   default?: number;
@@ -11,7 +11,7 @@ interface NumberField extends Field {
   integer?: boolean;
 }
 
-interface StringField extends Field {
+export interface StringField extends Field {
   type: "string";
   default?: string;
   minLength?: number;
@@ -19,31 +19,31 @@ interface StringField extends Field {
   pattern?: RegExp;
 }
 
-interface BooleanField extends Field {
+export interface BooleanField extends Field {
   type: "boolean";
   default?: boolean;
   truthy?: string[];
   falsy?: string[];
 }
 
-interface EnumField extends Field {
+export interface EnumField extends Field {
   type: "enum";
   values: readonly string[];
   default?: string;
 }
 
-interface UrlField extends Field {
+export interface UrlField extends Field {
   type: "url";
   default?: string;
   protocols?: string[];
 }
 
-interface EmailField extends Field {
+export interface EmailField extends Field {
   type: "email";
   default?: string;
 }
 
-type FieldSpec =
+export type FieldSpec =
   | NumberField
   | StringField
   | BooleanField
@@ -51,21 +51,21 @@ type FieldSpec =
   | UrlField
   | EmailField;
 
-type EnvSchema = Record<string, FieldSpec>;
+export type EnvSchema = Record<string, FieldSpec>;
 
-interface Options {
+export interface Options {
   env?: Record<string, string>;
   onError?: "return" | "throw";
 }
 
-interface FieldError {
+export interface FieldError {
   variable: string;
   message: string;
   description?: string;
   received?: string;
 }
 
-interface ValidationResult {
+export interface ValidationResult {
   success: boolean;
   data: Record<string, unknown>;
   errors: FieldError[];
