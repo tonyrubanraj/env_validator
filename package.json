@@ -1,4 +1,7 @@
 {
+  "bin": {
+    "enval": "./dist/cli.js"
+  },
   "devDependencies": {
     "@types/node": "^25.9.1"
   }
