@@ -9,22 +9,22 @@ const validateNumber = (value: string, spec: NumberField): RuleResult => {
   if (Number.isNaN(parsedNumber))
     return {
       ok: false,
-      message: `must be a number. Received ${value})`,
+      message: `must be a number`,
     };
   if (spec.integer && !Number.isInteger(parsedNumber))
     return {
       ok: false,
-      message: `must be an integer. Received ${parsedNumber}`,
+      message: `must be an integer`,
     };
   if (spec.max !== undefined && parsedNumber > spec.max)
     return {
       ok: false,
-      message: `must be <= ${spec.max}. Received ${parsedNumber}`,
+      message: `must be <= ${spec.max}`,
     };
   if (spec.min !== undefined && parsedNumber < spec.min)
     return {
       ok: false,
-      message: `must be >= ${spec.min}. Received ${parsedNumber}`,
+      message: `must be >= ${spec.min}`,
     };
   return {
     ok: true,
@@ -36,17 +36,17 @@ const validateString = (value: string, spec: StringField): RuleResult => {
   if (spec.pattern !== undefined && !spec.pattern.test(value))
     return {
       ok: false,
-      message: `must be of pattern ${spec.pattern}. Received ${value}`,
+      message: `must be of pattern ${spec.pattern}`,
     };
   if (spec.minLength !== undefined && value.length < spec.minLength)
     return {
       ok: false,
-      message: `must be of length >= ${spec.minLength}. Received string with length ${value.length}`,
+      message: `must be of length >= ${spec.minLength}.`,
     };
   if (spec.maxLength !== undefined && value.length > spec.maxLength)
     return {
       ok: false,
-      message: `must be of length <= ${spec.maxLength}. Received string with length ${value.length}`,
+      message: `must be of length <= ${spec.maxLength}`,
     };
   return {
     ok: true,
@@ -80,15 +80,10 @@ const validateBoolean = (value: string, spec: BooleanField): RuleResult => {
 };
 
 const validateEnum = (value: string, spec: EnumField): RuleResult => {
-  if (spec.default && !spec.values.includes(spec.default))
-    return {
-      ok: false,
-      message: `default must be one of ${spec.values.join(", ")}. Received ${spec.default}`,
-    };
   if (!spec.values.includes(value))
     return {
       ok: false,
-      message: `must be one of ${spec.values.join(", ")}. Received ${value}`,
+      message: `must be one of ${spec.values.join(", ")}`,
     };
   return {
     ok: true,
@@ -102,23 +97,13 @@ const validateUrl = (value: string, spec: UrlField): RuleResult => {
       ok: false,
       message: `Received an invalid url format`,
     };
-  if (spec.default && !URL.canParse(spec.default))
-    return {
-      ok: false,
-      message: `default url is of invalid format`,
-    };
   if (spec.protocols && spec.protocols.length) {
     const protocols = new Set<string>(spec.protocols);
-    if (spec.default && !protocols.has(new URL(spec.default).protocol))
-      return {
-        ok: false,
-        message: `default url protocol must be ${spec.protocols.join(", ")}. received url with protocol ${new URL(spec.default).protocol}`,
-      };
     const parsedUrl = new URL(value);
     if (!protocols.has(parsedUrl.protocol))
       return {
         ok: false,
-        message: `must use protocol ${spec.protocols.join(", ")}. received url with protocol ${parsedUrl.protocol}`,
+        message: `must use protocol ${spec.protocols.join(", ")}`,
       };
   }
   return {
@@ -127,12 +112,7 @@ const validateUrl = (value: string, spec: UrlField): RuleResult => {
   };
 };
 
-const validateEmail = (value: string, spec: EmailField): RuleResult => {
-  if (spec.default && !EMAIL_REGEXP.test(spec.default))
-    return {
-      ok: false,
-      message: `default value is in invalid email format`,
-    };
+const validateEmail = (value: string, _spec: EmailField): RuleResult => {
   if (!EMAIL_REGEXP.test(value))
     return {
       ok: false,
@@ -158,5 +138,7 @@ const runValidator = (value: string, spec: FieldSpec): RuleResult => {
       return validateString(value, spec);
     case "url":
       return validateUrl(value, spec);
+    default:
+      throw new Error("unknown field type");
   }
 };

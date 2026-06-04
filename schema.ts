@@ -52,3 +52,21 @@ type FieldSpec =
   | EmailField;
 
 type EnvSchema = Record<string, FieldSpec>;
+
+interface Options {
+  env?: Record<string, string>;
+  onError?: "return" | "throw";
+}
+
+interface FieldError {
+  variable: string;
+  message: string;
+  description?: string;
+  received?: string;
+}
+
+interface ValidationResult {
+  success: boolean;
+  data: Record<string, unknown>;
+  errors: FieldError[];
+}
