@@ -1,6 +1,6 @@
 {
   "name": "@tonyrubanraj/enval",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Validate environment variables at startup against a typed schema — fail fast with clear errors.",
   "author": "Tony Raja",
   "license": "MIT",
