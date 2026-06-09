@@ -1,0 +1,6 @@
+src/
+tests/
+.github/
+tsconfig.json
+jest.config.js
+*.map
