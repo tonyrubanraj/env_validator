@@ -1,4 +1,4 @@
-export { validate } from "./validate";
+export { validate } from "./validate.js";
 export type {
   EnvSchema,
   FieldSpec,
@@ -11,4 +11,4 @@ export type {
   EnumField,
   UrlField,
   EmailField,
-} from "./schema";
+} from "./schema.js";

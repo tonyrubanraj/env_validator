@@ -1,4 +1,4 @@
-import { FieldError } from "./schema";
+import type { FieldError } from "./schema.js";
 
 const RESET = "\x1b[0m";
 const RED = "\x1b[31m";

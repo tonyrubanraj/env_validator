@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import { formatErrors } from "./formatter";
-import { validate } from "./validate";
+import { formatErrors } from "./formatter.js";
+import { validate } from "./validate.js";
 
 const HELP_MSG = "expected: enval --schema <path>";
 

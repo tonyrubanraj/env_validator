@@ -1,4 +1,4 @@
-import {
+import type {
   NumberField,
   StringField,
   BooleanField,
@@ -6,7 +6,7 @@ import {
   UrlField,
   EmailField,
   FieldSpec,
-} from "./schema";
+} from "./schema.js";
 
 const TRUTHY_VALUES = new Set<string>(["true", "1", "yes", "on", "enabled"]);
 const FALSY_VALUES = new Set<string>(["false", "0", "no", "off", "disabled"]);

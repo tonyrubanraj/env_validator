@@ -1,6 +1,11 @@
-import { formatErrors } from "./formatter";
-import { EnvSchema, Options, ValidationResult, FieldError } from "./schema";
-import { runValidator } from "./validator";
+import { formatErrors } from "./formatter.js";
+import type {
+  EnvSchema,
+  Options,
+  ValidationResult,
+  FieldError,
+} from "./schema.js";
+import { runValidator } from "./validator.js";
 
 const isEmpty = (val: string | undefined): boolean => {
   return val === undefined || val === "";
