@@ -1,5 +1,7 @@
 # enval
 
+[![npm](https://img.shields.io/npm/v/@tonyrubanraj/enval)](https://www.npmjs.com/package/@tonyrubanraj/enval)
+
 Zero-dependency TypeScript library to validate environment variables at startup — fail fast with clear, structured errors.
 
 ## Features
@@ -35,13 +37,13 @@ Exit code is `1`, so CI pipelines and process managers catch it immediately.
 ## Installation
 
 ```bash
-npm install enval
+npm install @tonyrubanraj/enval
 ```
 
 ## Quick start
 
 ```typescript
-import { validate } from "enval";
+import { validate } from "@tonyrubanraj/enval";
 
 const result = validate(
   {
@@ -175,7 +177,7 @@ The schema file must export a default `EnvSchema` object:
 
 ```typescript
 // env.schema.ts  (compiled to env.schema.js)
-import type { EnvSchema } from "enval";
+import type { EnvSchema } from "@tonyrubanraj/enval";
 
 const schema: EnvSchema = {
   PORT: { type: "number", min: 1, max: 65535, required: true },
